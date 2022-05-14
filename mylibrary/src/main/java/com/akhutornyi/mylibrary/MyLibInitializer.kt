@@ -1,19 +1,18 @@
 package com.akhutornyi.mylibrary
 
 import com.akhutornyi.mylibrary.di.DiTreeHolder
-import com.akhutornyi.mylibrary.internal.SubDependency
 
 object MyLibInitializer {
 
     private var isInitialized = false
 
     fun initialize() {
-        DiTreeHolder.setSubDependency(SubDependency())
+        DiTreeHolder.initialize()
         isInitialized = true
     }
 
     fun reset() {
-        DiTreeHolder.resetSubDependency()
+        DiTreeHolder.reset()
         isInitialized = false
     }
 

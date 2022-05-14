@@ -1,20 +1,18 @@
 package com.akhutornyi.mylibrary.di
 
-import com.akhutornyi.mylibrary.internal.SubDependency
 
 internal object DiTreeHolder {
 
-    private var subDependency: SubDependency? = null
+    private var analyticsComponent: AnalyticsComponent? = null
 
-    internal fun setSubDependency(subDependency: SubDependency) {
-        this.subDependency = subDependency
+    internal fun initialize() {
+        analyticsComponent = DaggerAnalyticsComponent.create()
     }
 
-    internal fun resetSubDependency() {
-        subDependency = null
+    internal fun reset() {
+        analyticsComponent = null
     }
-
-    internal fun getSubDependency(): SubDependency =
-        subDependency ?: throw IllegalStateException("${SubDependency::class.qualifiedName} is NOT initialized")
+    internal fun getAnalyticsComponent(): AnalyticsComponent =
+        analyticsComponent ?: throw IllegalStateException("${AnalyticsComponent::class.qualifiedName} is NOT initialized")
 
 }
