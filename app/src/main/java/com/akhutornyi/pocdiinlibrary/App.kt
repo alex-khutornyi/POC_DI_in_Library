@@ -2,8 +2,10 @@ package com.akhutornyi.pocdiinlibrary
 
 import android.app.Application
 import com.akhutornyi.mylibrary.MyLibInitializer
+import dagger.hilt.android.HiltAndroidApp
 import timber.log.Timber
 
+@HiltAndroidApp
 class App : Application() {
 
     override fun onCreate() {
@@ -20,7 +22,7 @@ class App : Application() {
     }
 
     private fun setupMyLibrary() {
-        MyLibInitializer.initialize()
+        MyLibInitializer.initialize(this)
     }
 
 }

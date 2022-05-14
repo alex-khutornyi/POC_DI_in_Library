@@ -1,22 +1,25 @@
 package com.akhutornyi.mylibrary
 
+import android.app.Application
 import com.akhutornyi.mylibrary.di.DiTreeHolder
 import com.akhutornyi.mylibrary.internal.SubDependency
 
 object MyLibInitializer {
 
-    private var isInitialized = false
+    private var app: Application? = null
 
-    fun initialize() {
-        DiTreeHolder.setSubDependency(SubDependency())
-        isInitialized = true
+
+    fun initialize(application: Application) {
+        app = application
     }
+
+    internal fun application(): Application =
+        app ?: throw IllegalStateException("${MyLibInitializer::class} should be initialized before usage")
 
     fun reset() {
-        DiTreeHolder.resetSubDependency()
-        isInitialized = false
+        app = null
     }
 
-    fun isInitialized(): Boolean = isInitialized
+    fun isInitialized(): Boolean = app != null
 
 }
